@@ -157,7 +157,7 @@ class PluginFusioninventoryStaticmisc {
    static function task_definitiontype_wakeonlan($a_itemtype) {
 
       $a_itemtype['Computer'] = Computer::getTypeName();
-      $a_itemtype['PluginFusioninventoryDeployGroup'] = __('Dynamic Group');
+      $a_itemtype['PluginFusioninventoryDeployGroup'] = __('Fusioninventory group');
       return $a_itemtype;
    }
 
@@ -595,7 +595,7 @@ class PluginFusioninventoryStaticmisc {
    static function task_actiontype_deployinstall($a_itemtype) {
       return array('' => Dropdown::EMPTY_VALUE,
                    'Computer'                         => __('Computers'),
-                   'PluginFusioninventoryDeployGroup' => __('Fusinv', 'fusioninventory'). ' - ' .__('Group'),
+                   'PluginFusioninventoryDeployGroup' => __('Fusioninventory group'),
                    'Group'                            => __('Group')
                   );
    }
@@ -722,7 +722,7 @@ class PluginFusioninventoryStaticmisc {
    static function task_actiontype_collect($a_itemtype) {
       return array('' => Dropdown::EMPTY_VALUE,
                    'Computer'                         => __('Computers'),
-                   'PluginFusioninventoryDeployGroup' => __('Dynamic Group'),
+                   'PluginFusioninventoryDeployGroup' => __('Fusioninventory group'),
                    'Group'                            => __('Group')
                   );
    }
