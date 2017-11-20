@@ -926,6 +926,8 @@ class PluginFusioninventoryUnmanaged extends CommonDBTM {
             $data["domain"] = $this->fields["domain"];
             $data["comment"] = $this->fields["comment"];
             $data["is_dynamic"] = 1;
+            $data = PluginFusioninventoryToolbox::addDefaultStateIfNeeded('printer', $data);
+
             $printer_id = $Printer->add($data);
 
             foreach ($a_NetworkPorts as $data_Port) {
@@ -975,6 +977,8 @@ class PluginFusioninventoryUnmanaged extends CommonDBTM {
 //            $data_Port = current($a_NetworkPorts);
 //            $data["ip"] = $data_Port["ip"];
 //            $data["mac"] = $data_Port["mac"];
+            $data = PluginFusioninventoryToolbox::addDefaultStateIfNeeded('snmp', $data);
+
             $NetworkEquipment_id = $NetworkEquipment->add($data);
 
             foreach ($a_NetworkPorts as $data_Port) {
@@ -1022,6 +1026,9 @@ class PluginFusioninventoryUnmanaged extends CommonDBTM {
             $data["contact"] = $this->fields["contact"];
             $data["comment"] = $this->fields["comment"];
             $data["is_dynamic"] = 1;
+
+            $data = PluginFusioninventoryToolbox::addDefaultStateIfNeeded('peripheral', $data);
+
             $Peripheral_id = $Peripheral->add($data);
 
             foreach ($a_NetworkPorts as $data_Port) {
