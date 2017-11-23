@@ -477,7 +477,18 @@ class PluginFusioninventoryCommunicationNetworkInventory {
          $_SESSION["plugin_fusioninventory_entity"] = $input['entities_id'];
 
          //Add defaut status if there's one defined in the configuration
-         $input    = PluginFusioninventoryToolbox::addDefaultStateIfNeeded('snmp', $input);
+
+         if ($itemtype == 'Printer') {
+            $ask = 'printer';
+         }else if ($itemtype == 'Monitor') {
+            $ask = 'monitor';
+         }else if ($itemtype == 'Peripheral') {
+            $ask = 'peripheral';
+         }else{
+            $ask = 'snmp';
+         }
+
+         $input    = PluginFusioninventoryToolbox::addDefaultStateIfNeeded($ask, $input);
          $items_id = $class->add($input);
          if (isset($_SESSION['plugin_fusioninventory_rules_id'])) {
             $pfRulematchedlog = new PluginFusioninventoryRulematchedlog();
