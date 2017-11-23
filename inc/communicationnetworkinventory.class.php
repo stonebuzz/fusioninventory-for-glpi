@@ -480,10 +480,6 @@ class PluginFusioninventoryCommunicationNetworkInventory {
 
          if ($itemtype == 'Printer') {
             $ask = 'printer';
-         }else if ($itemtype == 'Monitor') {
-            $ask = 'monitor';
-         }else if ($itemtype == 'Peripheral') {
-            $ask = 'peripheral';
          }else{
             $ask = 'snmp';
          }
