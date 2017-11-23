@@ -1621,15 +1621,13 @@ class PluginFusioninventoryInventoryComputerLib extends CommonDBTM {
                // add printer
                $arrays['entities_id'] = $entities_id;
 
-               $arrays = PluginFusioninventoryToolbox::addDefaultStateIfNeeded('printer', $arrays);
-
                //manage location
                $dataLocation = $ruleLocation->processAllRules($input, array());
                if (isset($dataLocation['locations_id'])) {
                   $arrays['locations_id'] = $dataLocation['locations_id'];
                }
 
-
+               $arrays = PluginFusioninventoryToolbox::addDefaultStateIfNeeded('printer', $arrays);
                $a_printers[] = $printer->add($arrays);
             } else {
                $a_printers[] = $data['found_equipment'][0];
@@ -1713,13 +1711,13 @@ class PluginFusioninventoryInventoryComputerLib extends CommonDBTM {
                // add peripheral
                $arrays['entities_id'] = $entities_id;
 
-               $arrays = PluginFusioninventoryToolbox::addDefaultStateIfNeeded('peripheral', $arrays);
-
                //manage location
                $dataLocation = $ruleLocation->processAllRules($input, array());
                if (isset($dataLocation['locations_id'])) {
                   $arrays['locations_id'] = $dataLocation['locations_id'];
                }
+
+               $arrays = PluginFusioninventoryToolbox::addDefaultStateIfNeeded('peripheral', $arrays);
 
                $a_peripherals[] = $peripheral->add($arrays);
             } else {

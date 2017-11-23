@@ -93,12 +93,15 @@ class PluginFusioninventoryInventoryPrinterLib extends CommonDBTM {
       $input['id']            = $printers_id;
       $input['itemtype']            = 'Printer';
 
+
       //manage location
       $ruleLocation = new PluginFusioninventoryInventoryRuleLocationCollection();
       $dataLocation = $ruleLocation->processAllRules($input, array());
       if (isset($dataLocation['locations_id'])) {
          $input['locations_id'] = $dataLocation['locations_id'];
       }
+
+      $input    = PluginFusioninventoryToolbox::addDefaultStateIfNeeded('printer', $input);
 
       $printer->update($input);
 
