@@ -1265,6 +1265,7 @@ class PluginFusioninventoryInventoryComputerLib extends PluginFusioninventoryInv
             if ($data['found_equipment'][0] == 0) {
                // add monitor
                $arrays['entities_id'] = $entities_id;
+               $arrays = PluginFusioninventoryToolbox::addDefaultStateIfNeeded('monitor', $arrays);
                $a_monitors[] = $monitor->add($arrays);
             } else {
                $a_monitors[] = $data['found_equipment'][0];

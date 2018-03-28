@@ -93,6 +93,8 @@ class PluginFusioninventoryInventoryPrinterLib extends PluginFusioninventoryInve
       $input                  = $a_inventory['Printer'];
       $input['id']            = $printers_id;
       $input['itemtype']      = 'Printer';
+      $input    = PluginFusioninventoryToolbox::addDefaultStateIfNeeded('printer', $input);
+
       if (isset($a_inventory['networkport'])) {
          foreach ($a_inventory['networkport'] as $a_port) {
             if (isset($a_port['ip'])) {
@@ -100,6 +102,8 @@ class PluginFusioninventoryInventoryPrinterLib extends PluginFusioninventoryInve
             }
          }
       }
+  
+
       //Add the location if needed (play rule locations engine)
       $input = PluginFusioninventoryToolbox::addLocation($input);
       $printer->update($input, !$no_history);
