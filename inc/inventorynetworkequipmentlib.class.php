@@ -100,7 +100,9 @@ class PluginFusioninventoryInventoryNetworkEquipmentLib extends PluginFusioninve
 
       //Add defaut status if there's one defined in the configuration
       //If we're here it's because we've manually injected an snmpinventory xml file
-      $input = PluginFusioninventoryToolbox::addDefaultStateIfNeeded('snmp', $input);
+      if (!in_array('states_id', $a_lockable)) {
+         $input = PluginFusioninventoryToolbox::addDefaultStateIfNeeded('snmp', $input);
+      }
 
       //Add ips to the rule criteria array
       $input['ip'] = $a_inventory['internalport'];

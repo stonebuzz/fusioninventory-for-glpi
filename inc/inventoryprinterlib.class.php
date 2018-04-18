@@ -93,7 +93,9 @@ class PluginFusioninventoryInventoryPrinterLib extends PluginFusioninventoryInve
       $input                  = $a_inventory['Printer'];
       $input['id']            = $printers_id;
       $input['itemtype']      = 'Printer';
-      $input    = PluginFusioninventoryToolbox::addDefaultStateIfNeeded('printer', $input);
+      if (!in_array('states_id', $a_lockable)) {
+         $input    = PluginFusioninventoryToolbox::addDefaultStateIfNeeded('printer', $input);
+      }
 
       if (isset($a_inventory['networkport'])) {
          foreach ($a_inventory['networkport'] as $a_port) {
