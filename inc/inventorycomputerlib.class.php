@@ -2099,16 +2099,28 @@ class PluginFusioninventoryInventoryComputerLib extends PluginFusioninventoryInv
       $fwTypes->getFromDBByCrit([
          'name' => 'BIOS'
       ]);
-      $type_id = $fwTypes->getID();
-      $data['devicefirmwaretypes_id'] = $type_id;
 
-      $bios_id = $deviceBios->import($data);
-      $data['devicefirmwares_id']   = $bios_id;
       $data['itemtype']             = 'Computer';
       $data['items_id']             = $computers_id;
       $data['is_dynamic']           = 1;
-      $data['_no_history']          = $no_history;
-      $item_DeviceBios->add($data, [], !$no_history);
+
+      $type_id = $fwTypes->getID();
+      $bios_id = $deviceBios->import($data);
+
+      //check if bios (dynamically inventoried) already exist for computer
+      if($item_DeviceBios->getFromDBByCrit($data)){
+         $data['_no_history']          = $no_history;
+         $data['devicefirmwares_id']   = $bios_id;
+         $data['devicefirmwaretypes_id'] = $type_id;
+         $item_DeviceBios->update($data,$no_history);
+      }else{
+         $data['_no_history']          = $no_history;
+         $data['devicefirmwares_id']   = $bios_id;
+         $data['devicefirmwaretypes_id'] = $type_id;
+         $item_DeviceBios->add($data, [], !$no_history);
+      }
+
+
    }
 
 
