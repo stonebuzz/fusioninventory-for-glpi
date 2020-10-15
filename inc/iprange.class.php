@@ -458,11 +458,11 @@ class PluginFusioninventoryIPRange extends CommonDBTM {
 
          foreach ($a_data as  $value) {
             $tmp_configsecurity = [];
-            if(isset($credentials_found[$value['plugin_fusioninventory_configsecurities_id']])){
+            if (isset($credentials_found[$value['plugin_fusioninventory_configsecurities_id']])) {
                $tmp_snmp[] = $credentials_found[$value['plugin_fusioninventory_configsecurities_id']];
             }
          }
-         if(count($tmp_snmp)){
+         if (count($tmp_snmp)) {
             $tmp_ip['credentials'] = $tmp_snmp;
          }
          $yaml_conf['ip_range'][(string) $ip['name']."-".$ip['id']]    = $tmp_ip;
